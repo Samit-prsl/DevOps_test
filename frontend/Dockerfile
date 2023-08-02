@@ -1,13 +1,4 @@
-FROM node:16-alpine
-
-WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm ci
-
-COPY . .
-
-EXPOSE 3000
-
-CMD [ "npm","start" ]
+FROM nginx:alpine
+COPY  /build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
